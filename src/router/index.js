@@ -26,6 +26,17 @@ const routes = [
                 path: '/users',
                 name: 'User',
                 component:()=>import('../views/Users.vue')
+            },
+            {
+                path: '/articles/tags',
+                name: 'Tag',
+                component:()=>import('../views/articles/tags.vue')
+        
+            },
+            {
+                path: '/articles/index',
+                name: 'Article',
+                component:()=>import('@/views/articles/article.vue')
             }
         
         ]

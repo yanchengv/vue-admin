@@ -12,8 +12,8 @@
         <template #title>
           <el-icon><icon-menu /></el-icon>内容管理
         </template>
-        <el-menu-item index="">文章列表</el-menu-item>
-        <el-menu-item index="">标签管理</el-menu-item>
+        <el-menu-item index="/articles/index">文章列表</el-menu-item>
+        <el-menu-item index="/articles/tags">标签管理</el-menu-item>
       </el-sub-menu>
       <el-sub-menu index="3">
         <template #title>
