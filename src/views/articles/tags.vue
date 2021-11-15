@@ -7,7 +7,9 @@
     <el-table-column fixed="right" label="操作" width="200">
       <template #default="item">
         <el-button type="text" size="small">详情</el-button>
-        <el-button type="text" size="small">编辑</el-button>
+        <el-button type="text" size="small"
+          @click="handleUpdateClickBtn(item.row)"
+        >编辑</el-button>
         <el-button
           type="text"
           size="small"
@@ -52,6 +54,22 @@
       </span>
     </template>
   </el-dialog>
+
+  <el-dialog v-model="tagUpdateDialog" title="修改" width="50%" destroy-on-close center>
+      <el-form label-width="100px" :model="updateTagModalForm">
+      <el-form-item label="名称">
+        <el-input v-model="updateTagModalForm.name"></el-input>
+      </el-form-item>
+      <el-input type= "hidden" v-model="updateTagModalForm.id"></el-input>
+    </el-form>
+    <template #footer>
+      <span class="dialog-footer">
+        <el-button @click="addTagModalVisible = false">取消</el-button>
+        <el-button type="primary" @click="hadleUpdateTagSave">确定</el-button>
+      </span>
+    </template>
+  </el-dialog>
+
 </template>
 
 <script>
@@ -79,12 +97,17 @@ export default {
       data,
       addTagModalVisible: ref(false),
       tagDeleteDialog: ref(false),
+      tagUpdateDialog: ref(false),
       deleteTagDialogForm: reactive({
         id: "",
       }),
       addTagModalForm: reactive({
         name: "",
       }),
+      updateTagModalForm: reactive({
+        id: "",
+        name: ""
+      })
     };
   },
   methods: {
@@ -124,6 +147,26 @@ export default {
         }
       });
     },
+    handleUpdateClickBtn(row){
+      this.tagUpdateDialog = true;
+      this.updateTagModalForm.id = row.id
+      this.updateTagModalForm.name = row.name
+    },
+    hadleUpdateTagSave(){
+      request({
+        url: "admin/tags/update",
+        method: "post",
+        data: {id: this.updateTagModalForm.id,name: this.updateTagModalForm.name}
+      }).then((response) => {
+        this.tagUpdateDialog = false
+        if(response.status == 200){
+          ElMessage({
+            message: "修改成功",
+            type: "success"
+          })
+        }
+      }) 
+    }
   },
 };
 </script>

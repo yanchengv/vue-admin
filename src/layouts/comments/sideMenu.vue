@@ -1,6 +1,6 @@
 <template>
   <el-aside width="200px" style="background-color: rgb(238, 241, 246)">
-    <el-menu :default-openeds="['1']" router>
+    <el-menu :default-openeds="['']" router>
       <el-sub-menu index="1">
         <template #title>
           <el-icon><message /></el-icon>用户管理
