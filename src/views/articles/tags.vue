@@ -79,6 +79,7 @@ import { ElMessage } from "element-plus";
 import request from "@/utils/request.js";
 export default {
   name: "User",
+  inject: ["reload"], //注入App.vue页面中的reload方法
   setup() {
     const data = reactive({
       tableData: [],
@@ -140,6 +141,7 @@ export default {
       }).then((response) => {
         this.tagDeleteDialog = false;
         if (response.status == 200) {
+          this.reload()
           ElMessage({
             message: "删除成功",
             type: "success",
