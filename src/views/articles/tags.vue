@@ -18,6 +18,7 @@
         >
       </template>
     </el-table-column>
+
   </el-table>
 
   <el-dialog
@@ -71,6 +72,7 @@
   </el-dialog>
 
 </template>
+
 
 <script>
 import { onMounted } from "@vue/runtime-core";

@@ -5,8 +5,9 @@
         <template #title>
           <el-icon><message /></el-icon>用户管理
         </template>
-        <el-menu-item index="/users">管理员列表</el-menu-item>
-        <el-menu-item index="/about">用户列表</el-menu-item>
+         <el-menu-item index="/admins">管理员列表</el-menu-item>
+        <el-menu-item index="/users">用户列表</el-menu-item>
+        <el-menu-item index="/about">关于我们</el-menu-item>
       </el-sub-menu>
       <el-sub-menu index="2">
         <template #title>

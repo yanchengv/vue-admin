@@ -3,7 +3,9 @@
     <side-menu></side-menu>
     <el-container>
        <el-header style="text-align: right; font-size: 12px">
-        <web-header></web-header>
+        <web-header>
+        </web-header>
+      
       </el-header>
       <el-main>
           <router-view/>

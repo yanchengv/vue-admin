@@ -2,7 +2,6 @@
   <div id="app">
     <application/>
     <!-- 通过isRouterAlive参数控制router-view的显隐，来实现vue主动刷新页面及列表数据删除后的刷新方法reload;使用技术 provide / inject 组合 -->
-    
    <router-view v-if="isRouterAlive"/>
   </div>
   

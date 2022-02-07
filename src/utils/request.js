@@ -2,7 +2,7 @@ import axios from 'axios'
 import { ElMessage } from 'element-plus'
 // create an axios instance
 const service = axios.create({
-    baseURL: "http://localhost:9000/", // url = base url + request url
+    baseURL: "http://localhost:8080/", // url = base url + request url
     // withCredentials: true, // send cookies when cross-domain requests
     timeout: 5000, // request timeout
     headers: { "content-type": "application/json" }
@@ -12,7 +12,8 @@ const service = axios.create({
 service.interceptors.response.use(
     response => {
         const res = response.data
-        if (res.status !== 200) {
+        //console.log(res)
+        if (res.code !== 200) {
             ElMessage({
                 message: res.msg || 'Error',
                 type: 'error',
