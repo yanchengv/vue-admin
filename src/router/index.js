@@ -27,12 +27,24 @@ const routes = [
                 name: 'User',
                 component:()=>import('../views/Users.vue')
             },
+            {
+                path: '/users/show',
+                name: 'UserShow',
+                component:()=>import('../views/users/show.vue')
+            },
 
             {
                 path: '/admins',
                 name: 'Admin',
-                component:()=>import('../views/Admins.vue')
+                component:()=>import('../views/Admins.vue'),
             },
+            
+            {
+                path: '/admins/details',
+                name: 'AdminDetails',
+                component:()=>import('../views/admins/details.vue'),
+            },
+
 
             {
                 path: '/articles/tags',

@@ -5,15 +5,53 @@
      <el-table-column prop="name" label="姓名" width="120"> </el-table-column>
      <el-table-column prop="mobile" label="手机号" width="120"> </el-table-column>
     <el-table-column prop="createdAt" label="创建时间"> </el-table-column>
+
+    <el-table-column fixed="right" label="操作" width="120">
+      <template #default="item">
+        <el-button type="text" size="small" @click="handleDetailBtn(item.row)">详情</el-button>
+        <el-button type="text" size="small" @click="handleEditBtn(item.row)">修改</el-button>
+        
+      </template>
+    </el-table-column>
+
   </el-table>
   <el-pagination background layout="prev, pager, next" :total="data.totalNum" :page-size="data.pagesize" v-model:currentPage="data.currentPage"
   @current-change="handleCurrentPage">
   </el-pagination>
+
+
+  <!--修改弹框-->
+  <el-dialog v-model="adminUpdateDialog" title="修改" width="50%" destroy-on-close center>
+      <el-form  label-width="100px" :model="updateAdminModalForm">
+        <el-form-item label="用户名">
+          <el-input v-model="updateAdminModalForm.nickname"></el-input>
+        </el-form-item>
+      <el-form-item label="真实姓名">
+        <el-input v-model="updateAdminModalForm.name"></el-input>
+      </el-form-item>
+      <el-form-item label="手机号">
+        <el-input v-model="updateAdminModalForm.mobile"></el-input>
+      </el-form-item>
+      <el-form-item label="邮箱">
+        <el-input v-model="updateAdminModalForm.email"></el-input>
+      </el-form-item>
+      <el-input type= "hidden" v-model="updateAdminModalForm.id"></el-input>
+    </el-form>
+    <template #footer>
+      <span class="dialog-footer">
+        <el-button @click="adminUpdateDialog = false">取消</el-button>
+        <el-button type="primary" @click="hadleUpdateAdminSubmit">确定</el-button>
+      </span>
+    </template>
+  </el-dialog>
+
+
 </template>
 
 <script>
-import {  reactive  } from "vue";
+import { ref, reactive  } from "vue";
 import request from "../utils/request";
+import { ElMessage } from "element-plus";
 //import Pagination from "./pagination.vue"
 export default {
   name: "Admin",
@@ -34,7 +72,20 @@ export default {
     
     // 暴露给 template
     return {
-      data
+      data,
+      adminUpdateDialog: ref(false),
+      updateAdminModalForm: reactive({
+        id: "",
+        name: [
+          {
+            required: true,
+            message: "请输入真实姓名",
+          }
+        ],
+        nickname: "",
+        mobile: "",
+        email: ""
+      })
     }
   },
 
@@ -42,8 +93,7 @@ export default {
         //loaded 用于表征是否已经读取后端接口加载数据
         //我们在 mounted 钩子函数中对首页文章列表数据进行初始化（此时对应的生命周期节点是 Vue 组件挂载成功之后，模型数据渲染之前），如果还没有读取后端接口加载数据，则调用 methods 方法列表中定义的 getAdminList 方法加载数据。
         if (!this.loaded) {
-           console.log("mounted...")
-        this.getAdminList()
+          this.getAdminList()
         }
     
     },
@@ -68,6 +118,45 @@ export default {
         this.data.currentPage = newPage
         this.getAdminList()
       },
+
+      handleEditBtn(row){
+        this.adminUpdateDialog = true
+        this.updateAdminModalForm.id = row.id
+        this.updateAdminModalForm.name = row.name
+        this.updateAdminModalForm.nickname = row.nickname
+        this.updateAdminModalForm.mobile = row.mobile
+        this.updateAdminModalForm.email = row.email
+      },
+
+      handleDetailBtn(row){
+          this.$router.push({
+            name: 'AdminDetails',
+            params: {
+              id: row.id,
+            },
+          })
+      },
+
+      hadleUpdateAdminSubmit(){
+          request({
+            url: "/admins/update",
+            method: "post",
+            data: {id: this.updateAdminModalForm.id,name: this.updateAdminModalForm.name,nickname: this.updateAdminModalForm.nickname,
+            phone: this.updateAdminModalForm.mobile,email: this.updateAdminModalForm.email},
+
+          }).then((response)=>{
+             this.getAdminList()
+            this.adminUpdateDialog = false
+            let type = "error"
+            if(response.code == 200){
+              type = "success"
+            }
+            ElMessage({
+                message: response.msg,
+                type: type
+             })
+          })
+      }
 
     }
 };

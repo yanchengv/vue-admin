@@ -4,8 +4,12 @@
     <el-table-column prop="nickname" label="名称" > </el-table-column>
     <el-table-column prop="name" label="真实姓名"></el-table-column>
     <el-table-column prop="phone" label="手机号"></el-table-column>
-    <el-table-column prop="created_at" label="创建时间"> </el-table-column>
-
+    <el-table-column prop="createdAt" label="创建时间"> </el-table-column>
+    <el-table-column fixed="right" label="操作" width="120">
+      <template #default="item">
+        <el-button type="text" size="small" @click="handleDetailBtn(item.row)">详情</el-button>
+      </template>
+    </el-table-column>
   </el-table>
     <el-pagination background layout="prev, pager, next" :total="data.totalNum" :page-size="data.pagesize" v-model:currentPage="data.currentPage"
   @current-change="handleCurrentPage">
@@ -43,7 +47,7 @@ export default {
         }
   },
   methods: {
-    getAllUsers(){
+    getAllUsers(){  
       request({
         url: "users/getAllUsers/",
         method: "get",
@@ -59,6 +63,15 @@ export default {
         this.page = newPage
         this.getAllUsers()
     },
+    //用户详情
+    handleDetailBtn(row){
+      this.$router.push({
+        name: "UserShow",
+        params: {
+          id: row.id
+        }
+      })
+    }
   }
 };
 </script>
