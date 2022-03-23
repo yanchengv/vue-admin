@@ -11,10 +11,10 @@
       </el-sub-menu>
       <el-sub-menu index="2">
         <template #title>
-          <el-icon><icon-menu /></el-icon>内容管理
+          <el-icon><icon-menu /></el-icon>外卖管理
         </template>
-        <el-menu-item index="/articles/index">文章列表</el-menu-item>
-        <el-menu-item index="/articles/tags">标签管理</el-menu-item>
+        <el-menu-item index="/takeouts/orders/index">订单管理</el-menu-item>
+        <el-menu-item index="#">餐厅管理</el-menu-item>
       </el-sub-menu>
       <el-sub-menu index="3">
         <template #title>

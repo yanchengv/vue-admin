@@ -56,6 +56,17 @@ const routes = [
                 path: '/articles/index',
                 name: 'Article',
                 component:()=>import('@/views/articles/article.vue')
+            },
+
+            {
+                path: '/takeouts/orders/index',
+                name: 'TakoutOrder',
+                component:()=>import('../views/takeouts/orders/index.vue')
+            },
+            {
+                path: '/takeouts/orders/show',
+                name: 'TakeoutOrderShow',
+                component:()=>import('../views/takeouts/orders/show.vue')
             }
         
         ]

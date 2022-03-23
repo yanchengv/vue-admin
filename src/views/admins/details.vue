@@ -8,7 +8,7 @@
     <el-descriptions-item label="用户昵称">{{data.admin.nickname}}</el-descriptions-item>
     <el-descriptions-item label="姓名" :span="2">{{data.admin.name}}</el-descriptions-item>
     <el-descriptions-item label="创建时间">
-      2022-01-01
+      {{data.admin.createdAt}}
     </el-descriptions-item>
   </el-descriptions>
 </template>
