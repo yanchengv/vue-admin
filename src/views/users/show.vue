@@ -41,7 +41,7 @@ export default({
     setup(){
         let router = useRouter()
         const data = reactive({
-            user: {id: router.currentRoute.value.params.id},
+            user: {id: router.currentRoute.value.query.id},
             cards: []
         })
         return {

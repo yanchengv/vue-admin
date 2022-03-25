@@ -66,8 +66,8 @@ export default {
     //用户详情
     handleDetailBtn(row){
       this.$router.push({
-        name: "UserShow",
-        params: {
+        path: "/users/show",
+        query: {
           id: row.id
         }
       })

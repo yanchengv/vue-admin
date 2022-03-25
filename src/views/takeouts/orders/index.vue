@@ -66,8 +66,8 @@ export default {
 
       handleDetailBtn(row){
           this.$router.push({
-            name: 'TakeoutOrderShow',
-            params: {
+            path: '/takeouts/orders/show',
+            query: {
               orderId: row.id,
             },
           })

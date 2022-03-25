@@ -130,8 +130,8 @@ export default {
 
       handleDetailBtn(row){
           this.$router.push({
-            name: 'AdminDetails',
-            params: {
+            path: '/admins/details',
+            query: {
               id: row.id,
             },
           })

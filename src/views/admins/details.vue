@@ -1,6 +1,6 @@
 <template>
     <el-descriptions
-    title="用户详情"
+    title="管理员详情"
     :column="4"
     direction="vertical"
   >
@@ -22,7 +22,7 @@ export default ({
     setup() {
         const router = useRouter()
         const data = reactive({
-            admin: {id: router.currentRoute.value.params.id},
+            admin: {id: router.currentRoute.value.query.id},
         })
         return {
             data,
@@ -33,7 +33,7 @@ export default ({
         request({
             url: "/admins/details",   
             method: "get",
-            params: {"id": this.data.admin.id},
+            params: {id: this.data.admin.id},
 
         }).then((response)=>{
             this.data.admin = response.data;

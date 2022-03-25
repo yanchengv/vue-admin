@@ -46,7 +46,7 @@
     <el-table-column prop="refund_price" label="退款金额"/>
     <el-table-column prop="refund_num" label="退款数量"/>
     <el-table-column prop="refund_apply_at" label="退款时间"/>
-    <el-table-column prop="tastes" label="口味"/>
+    <el-table-column prop="taste_names" label="口味"/>
 
     <el-table-column fixed="right" label="操作" width="120">
       <template #default>
@@ -61,12 +61,14 @@
 <script>
 import { reactive } from "@vue/reactivity"
 import request from "@/utils/request"
+import {useRouter} from "vue-router";
 
 export default({
     name: "takeoutOrderShow",
     setup(){
+        const router = useRouter()
         const data = reactive({
-            order: {}
+            order: {id: router.currentRoute.value.query.orderId}
         })
         return {
             data,
@@ -87,7 +89,7 @@ export default({
                 request({
                         url: "/takeouts/orders/show",
                         method: "get",
-                        params: {orderId: "2840"}
+                        params: {orderId: this.data.order.id}
                     }).then((response)=>{
                             this.data.order= response.data
                     })
