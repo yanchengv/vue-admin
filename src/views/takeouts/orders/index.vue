@@ -59,7 +59,7 @@ export default {
           params:{page: this.data.currentPage,pageSize: this.data.pagesize},
         }).then((response)=>{
           this.data.tableData = response.data.list
-          this.data.totalNum = response.data.total
+          this.data.totalNum = response.data.totalNum
         }
         )
       },

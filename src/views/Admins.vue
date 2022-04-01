@@ -109,7 +109,7 @@ export default {
         //在vue较多使用的是axios请求，请求后的回调函数中，this不能指向当前vue实例，打印出来是undefined;
         //(response)=>箭头函数内部的this是词法作用域,是由外层调用者vue来确定,使用箭头函数之后，箭头函数指向的函数内部的this已经绑定了外部的vue实例了
         this.data.tableData = response.data.list
-        this.data.totalNum = response.data.total
+        this.data.totalNum = response.data.totalNum
       })
     },
 
