@@ -67,6 +67,16 @@ const routes = [
                 path: '/takeouts/orders/show',
                 name: 'TakeoutOrderShow',
                 component:()=>import('../views/takeouts/orders/show.vue')
+            },
+            {
+                path: '/takeouts/restaurants/index',
+                name: 'TakeoutRestaurant',
+                component:()=>import('../views/takeouts/restaurants/index.vue')
+            },
+            {
+                path: '/takeouts/restaurants/edit',
+                name: 'TakeoutRestaurantEdit',
+                component:()=>import('../views/takeouts/restaurants/edit.vue')
             }
         
         ]

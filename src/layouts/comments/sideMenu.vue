@@ -14,7 +14,7 @@
           <el-icon><icon-menu /></el-icon>外卖管理
         </template>
         <el-menu-item index="/takeouts/orders/index">订单管理</el-menu-item>
-        <el-menu-item index="#">餐厅管理</el-menu-item>
+        <el-menu-item index="/takeouts/restaurants/index">餐厅管理</el-menu-item>
       </el-sub-menu>
       <el-sub-menu index="3">
         <template #title>
