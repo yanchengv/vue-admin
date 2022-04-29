@@ -12,8 +12,8 @@ const service = axios.create({
 service.interceptors.response.use(
     response => {
         const res = response.data
-        //console.log(res)
         if (res.code !== 200) {
+            console.log(res)
             ElMessage({
                 message: res.msg || 'Error',
                 type: 'error',
@@ -29,7 +29,7 @@ service.interceptors.response.use(
     error => {
         console.log('err' + error) // for debug
         ElMessage({
-          message: error.msg,
+          message: error.msg || '出错了',
           type: 'error',
           duration: 5 * 1000
         })
